@@ -25,3 +25,19 @@ async function take(source, n) {
   }
   return results;
 }
+
+async function main() {
+  const stream   = dataStream(20);
+  const evens    = filterEven(stream);
+  const mapped   = mapTimes10(evens);
+  const result   = await take(mapped, 4);
+ 
+  console.log("Result:", result); 
+ 
+  console.log("\nOne by one:");
+  for await (const val of dataStream(5)) {
+    console.log("Get:", val);
+  }
+}
+ 
+main();
