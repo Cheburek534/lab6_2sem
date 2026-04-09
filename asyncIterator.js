@@ -15,3 +15,13 @@ async function* mapTimes10(source) {
   for await (const item of source) {
     yield item * 10;
   }
+}
+ 
+async function take(source, n) {
+  const results = [];
+  for await (const item of source) {
+    results.push(item);
+    if (results.length >= n) break;
+  }
+  return results;
+}
